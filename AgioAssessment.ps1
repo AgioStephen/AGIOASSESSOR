@@ -108,7 +108,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
     /  \ | |  __  | || |  | |    /  \  | (___| (___ | |__  | (___| (___ | |  | | |__) |
    / /\ \| | |_ | | || |  | |   / /\ \  \___ \\___ \|  __|  \___ \\___ \| |  | |  _  / 
   / ____ \ |__| |_| || |__| |  / ____ \ ____) |___) | |____ ____) |___) | |__| | | \ \ 
- /_/    \_\_____|_____\____/  /_/    \_\_____/_____/|______|_____/_____/ \____/|_|  \_\
+ /_/    \_\_____|_____\____/  /_/    \_\_____/_____/|______|_____/_____/ \____/|_|  \_
+ 
+ Created by Stephen Corrigan and Keith Goddard May 2023
 "@
 
 $host.UI.RawUI.ForegroundColor = 'Magenta'
