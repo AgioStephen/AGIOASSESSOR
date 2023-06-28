@@ -1,4 +1,13 @@
-﻿# Set console color
+﻿# Make Agio Directory
+
+cd \
+
+mkdir c:\agio
+
+# Directory to change to
+$directory = "C:\Agio"
+
+# Set console color
 $host.UI.RawUI.ForegroundColor = 'Green'
 
 # Check if Chocolatey is installed
@@ -34,6 +43,29 @@ if ($azInstalled -eq $null) {
 } else {
     Write-Host "Azure CLI is already installed."
 }
+
+# Change directory to where you want to clone the repository
+Set-Location -Path "C:\Agio\"
+
+# Clone the repository
+git clone https://github.com/cisagov/ScubaGear
+
+# Change to the new directory that was created when the repository was cloned
+Set-Location -Path ".\ScubaGear"
+
+# Run the setup script
+.\Setup.ps1
+
+# Define the function to import the module and run the import-scuba command
+function invoke-scuba-gear {
+    Import-Module -Name .\PowerShell\ScubaGear
+    import-scuba
+}
+
+# Call the function
+invoke-scuba-gear
+
+
 
 # Display ASCII Art
 Write-Host @"
@@ -155,9 +187,9 @@ $subMenu = @{
         "1" = @{ "name"="Azure AD Recon"; "link"="https://github.com/adrecon/AzureADRecon"; "script"="AzureADRecon.ps1" }
         "2" = @{ "name"="Crowdstrike"; "link"="https://github.com/CrowdStrike/CRT"; "script"="Get-CRTReport.ps1" }
         "3" = @{ "name"="Email Recon"; "link"="https://github.com/dstreefkerk/PowerShell"; "script"="\Infosec-Related\Invoke-EmailRecon.ps1" }
-        "4" = @{ "name"="DKIM Check"; "link"="https://github.com/dstreefkerk/PowerShell/blob/master/Infosec-Related"; "script"="Invoke-CheckDKIMSelectors.ps1" }
+        "4" = @{ "name"="DKIM Check"; "link"="https://github.com/dstreefkerk/PowerShell"; "script"="\Infosec-Related\Invoke-CheckDKIMSelectors.ps1" }
         "5" = @{ "name"="CIS SCUBA Gear Setup"; "link"="https://github.com/cisagov/ScubaGear"; "script"="SetUp.ps1" }
-        "6" = @{ "name"="CIS SCUBA Gear RUN"; "link"="https://github.com/cisagov/ScubaGear"; "script"="invoke-scuba" }
+        "6" = @{ "name"="CIS SCUBA Gear RUN"; "link"="https://github.com/AgioStephen/AGIOASSESSOR"; "script"="invoke-scuba.ps1" }
     }
     "5" = @{
         "1" = @{ "name"="RV TOOLS"; "link"="https://github.com/AgioStephen/rvtools"; "script"="RVTools4.3.2.msi" }
@@ -187,7 +219,8 @@ $subMenuItem = Read-Host "Select a script to run (e.g. 1.1)"
 # Clone the selected repository and run the script
 $selectedRepoUrl = $subMenu[$mainMenuItem][$subMenuItem]['link']
 $scriptName = $subMenu[$mainMenuItem][$subMenuItem]['script']
-$cloneDir = "$env:TEMP\$(New-Guid)"
+$cloneDir = "C:\Agio\$(New-Guid)"
 git clone $selectedRepoUrl $cloneDir
 
 & "$cloneDir\$scriptName"
+
