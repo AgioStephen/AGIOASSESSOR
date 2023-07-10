@@ -48,13 +48,13 @@ if ($azInstalled -eq $null) {
 Set-Location -Path "C:\Agio\"
 
 # Clone the repository
-git clone https://github.com/cisagov/ScubaGear
+# git clone https://github.com/cisagov/ScubaGear
 
 # Change to the new directory that was created when the repository was cloned
-Set-Location -Path ".\ScubaGear"
+# Set-Location -Path ".\ScubaGear"
 
 # Run the setup script
-.\Setup.ps1
+# .\Setup.ps1
 
 # Define the function to import the module and run the import-scuba command
 function invoke-scuba-gear {
@@ -63,7 +63,7 @@ function invoke-scuba-gear {
 }
 
 # Call the function
-invoke-scuba-gear
+# invoke-scuba-gear
 
 
 
